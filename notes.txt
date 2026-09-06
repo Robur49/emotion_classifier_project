@@ -1,0 +1,21 @@
+#Process that I have in mind:
+
+#-->Make sure to have scikit-learn, mediapipe, opencv-python, and numpy installed
+
+#-->Clean Data:
+#   Delete any images that will make it harder to train the model. Some examples could be
+#   images where the face isn't facing the camera, the face is cut off, the expression looks
+#   like two different emotions, etc.
+
+#-->Prepare Data:
+#   Start programming and make a function to trace the necessary face landmarks
+#   for facial recognition.
+
+#-->Train Model
+#-->Test Model Using Webcam
+
+Download Requirements:
+scikit-learn
+mediapipe
+opencv-python
+numpy
