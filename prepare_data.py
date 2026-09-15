@@ -15,31 +15,32 @@ Working with all the data helps deal with more scenarios like when there's no
 face at all, or fewer landmarks are being worked with.
 """
 
-output = []
-for emotion_indx, emotion in enumerate(os.listdir(data_dir)):
-    if emotion.startswith('.'):  # Skips hidden files in the main data folder
-        continue
-
-    emotion_folder_path = os.path.join(data_dir, emotion)
-
-    for image_name in os.listdir(emotion_folder_path):
-        if image_name.startswith('.'):  # Skips hidden files inside the emotion folders
+# Open the file at the start in 'append' mode ('a')
+with open('data.txt', 'a') as f:
+    # sorted(...) is used so that the emotions are sorted alphabetically
+    for emotion_indx, emotion in enumerate(sorted(os.listdir(data_dir))):
+        if emotion.startswith('.'):
             continue
 
-        image_path = os.path.join(emotion_folder_path, image_name)
-        image = cv2.imread(image_path)
+        emotion_folder_path = os.path.join(data_dir, emotion)
 
-        # Safety check: if OpenCV couldn't read the file, skip it
-        if image is None:
-            print(f"Warning: Failed to load image at {image_path}, skipping...")
-            continue
+        for image_name in os.listdir(emotion_folder_path):
+            if image_name.startswith('.'):
+                continue
 
-        face_landmarks = get_face_landmarks(image)
+            image_path = os.path.join(emotion_folder_path, image_name)
+            image = cv2.imread(image_path)
 
-        if len(face_landmarks) == 1404:
-            face_landmarks.append(int(emotion_indx))
-            output.append(face_landmarks)  # output that will train the model
+            if image is None:
+                continue
 
-np.savetxt('data.txt', np.asarray(output))
+            face_landmarks = get_face_landmarks(image)
 
+            if len(face_landmarks) == 1404:
+                face_landmarks.append(int(emotion_indx))
+                # Save this single face directly to the file
+                np.savetxt(f, np.asarray([face_landmarks]))
 
+            # Manually delete the image from memory to prevent PyCharm lag
+            del image
+        
