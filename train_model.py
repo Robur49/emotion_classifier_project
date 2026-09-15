@@ -32,6 +32,3 @@ y_pred = rf_classifier. predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy * 100: .2f}%")
 print(confusion_matrix(y_test, y_pred))
-
-#Minute 23
-
