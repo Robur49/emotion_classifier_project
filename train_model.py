@@ -1,4 +1,5 @@
 import numpy as np
+import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
@@ -32,3 +33,7 @@ y_pred = rf_classifier. predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 print(f"Accuracy: {accuracy * 100: .2f}%")
 print(confusion_matrix(y_test, y_pred))
+
+with open('./model', 'wb') as f:
+    pickle.dump(rf_classifier, f)
+
