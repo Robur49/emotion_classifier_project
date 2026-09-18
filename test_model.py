@@ -1,4 +1,5 @@
 import cv2
+import sys # to access the system
 import pickle
 from utils import get_face_landmarks
 
@@ -24,6 +25,7 @@ while True:
     # visualize the frame
     face_landmarks = get_face_landmarks(frame, static_image_mode=False)
 
+    det = None
     # SAFETY CHECK: Only predict if a full face is detected
     if len(face_landmarks) == 1404:
         output = model.predict([face_landmarks])
@@ -39,9 +41,26 @@ while True:
                     3,
                     (0, 255, 0),
                     5)
-
+        # Window that will display the corresponding emotion
+        if (emotion_text == "HAPPY"):
+            img = cv2.imread("happy_vector.png")
+            res = cv2.resize(img, (500, 500))
+            cv2.imshow("Emotion", res)
+        if (emotion_text == "NEUTRAL"):
+            img = cv2.imread("neutral_vector.png")
+            res = cv2.resize(img, (500, 500))
+            cv2.imshow("Emotion", res)
+        if (emotion_text == "SAD"):
+            img = cv2.imread("sad_vector.png")
+            res = cv2.resize(img, (500, 500))
+            cv2.imshow("Emotion", res)
+        if (emotion_text == "SURPRISED"):
+            img = cv2.imread("surprised_vector.png")
+            res = cv2.resize(img, (500, 500))
+            cv2.imshow("Emotion", res)
 
     cv2.imshow('frame', frame)
+
 
     # wait 25 milliseconds to make the visualization look real-time
     cv2.waitKey(25)
