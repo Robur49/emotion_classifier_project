@@ -1,6 +1,6 @@
 # Real-Time Emotion Classifier with Custom UI
 
-A machine learning pipeline that captures real-time webcam feeds, extracts facial landmarks, and classifies human emotions using a Random Forest model. The project features a custom-engineered UI that dynamically displays original vector artwork corresponding to the detected emotion.
+A machine learning pipeline that captures real-time webcam feeds, extracts facial landmarks, and classifies human emotions using a Random Forest model. The project features a custom-engineered UI that dynamically displays original vector artwork (inspired by the Duolingo art style) corresponding to the detected emotion.
 
 <img width="2550" height="5095" alt="emotion class vector" src="https://github.com/user-attachments/assets/5ccdbb92-158e-4ff7-8c10-a55efaf9b4d3" />
 
